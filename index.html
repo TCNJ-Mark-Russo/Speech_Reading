@@ -85,6 +85,7 @@
 					<!-- <source src="merged.mp4#" type="video/mp4"> -->
                     Your browser does not support the video tag.
                 </video>
+				<div class="waveform"></div>
 			</div>
 			<div class="tab-block">
 				<div class="tabs">
@@ -112,7 +113,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="waveform"></div>
+		<!-- <div class="waveform"></div> -->
 	</main>
 
 	<footer>
@@ -137,16 +138,16 @@
 			container:      '.waveform',
 			height:         32,
 			barHeight:      3,
-			dragToSeek:     true,
-			mediaControls:  true,
+			dragToSeek:     false,
+			mediaControls:  false,
 			media:          video,          // Set video as source media for waveform display
 			waveColor:      'rgb(200, 0, 200)',
 			progressColor:  'rgb(100, 0, 100)',
 		})
 
-		wavesurfer.on('interaction', () => {
-			wavesurfer.play()
-		});
+		//wavesurfer.on('interaction', () => {
+		//	wavesurfer.play()
+		//});
 
 		document.wavesurfer = wavesurfer;
 	</script>	
