@@ -155,7 +155,7 @@ function setChoice(choice) {
     const video  = document.getElementById("id_video");
     switch(choice) {
         case "choice-1":
-            video.style.filter = "blur(25px)";
+            video.style.filter = "blur(20px)";
             break;
         case "choice-2":
             video.style.filter = "none";
