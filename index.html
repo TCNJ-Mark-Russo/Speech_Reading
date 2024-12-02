@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Understanding Speech Reading</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="lr.css" rel="stylesheet">
+    <script type="text/javascript" src="lr.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="contain">
+			<div class="logolock">
+				<img class="logo" src="logo.webp" alt="TCNJ" width="200">
+				<p class="tagline">Understanding Speech Reading</p>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#" id="id_normal_hl">Normal</a></li>
+					<li><a class="active" href="#" id="id_mild_hl">Mild</a></li>
+					<li><a href="#" id="id_moderate_hl">Moderate</a></li>
+					<li><a href="#" id="id_severe_hl">Severe</a></li>
+					<li><a href="#" id="id_profound_hl">Profound</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<section class="intro contain">
+			<h1>Mild Hearing Loss <br><span>&rarr; 30 dB HL - 40 dB HL</span></h1>
+			<p class="info">
+				<strong style="color: var(--secondary-color);">
+					<img src="info-icon.svg" alt="info" width-"14" height="14" style="fill: #0d99ff; display: inline;" /> INFO: 
+				</strong>
+				1) Select degree of hearing loss (above). 
+				2) Select video and audio degredation level (below).
+				3) Enter spoken sentence in the TEXT ENTRY box for your score.
+			</p>
+		</section>
+
+		<div class="choices">
+			<button class="choice" id="choice-1">
+				<span>1</span>
+				<h2>Degraded Audio Only No Face Video</h2>
+				<svg viewBox="0 0 512 512" width="60">
+					<path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z" />
+				</svg>
+			</button>
+<!-- 			disable buttons until viewer has completed section 1 -->
+			<button class="choice" id="choice-2">
+				<span>2</span>
+				<h2>Degraded Audio with Face Video</h2>
+				<svg viewBox="0 0 512 512" width="60">
+					<path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z" />
+				</svg>
+			</button>
+			<button class="choice" id="choice-3">
+				<span>3</span>
+				<h2>Non-Degraded Audio with Face Video</h2>
+				<svg viewBox="0 0 512 512" width="60">
+					<path d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z" />
+				</svg>
+			</button>
+		</div>
+
+		<div class="content">
+			<div class="videoblock">
+				<div class="sentence-button-block">
+					<button id="id_new_sentence" class="sentence">
+						<h2>Select a new sentence</h2>
+					</button>
+					<button id="id_replay_sentence" class="sentence">
+						<h2>Re/play sentence</h2>
+					</button>
+				</div>
+                <video id="id_video" width="600" height="303" controls crossorigin="anonymous">
+					<source src="merged551x311.mp4#" type="video/mp4">
+					<!-- <source src="merged.mp4#" type="video/mp4"> -->
+                    Your browser does not support the video tag.
+                </video>
+			</div>
+			<div class="tab-block">
+				<div class="tabs">
+					<div class="tab active" data-tab="accuracy">
+						<h3>Sentence</h3>
+					</div>
+					<div class="tab" data-tab="graph">
+						<h3>Audiogram</h3>
+					</div>
+				</div>
+				<div class="tab-content">
+					<div class="tab-content-item active" id="accuracy">
+                        <!-- <div id="transcript">
+                        </div> -->
+						<p><small>TEXT ENTRY:</small></p>
+						<textarea name="userarea" id="id_inputArea" cols="60" rows="30" placeholder="Enter the spoken sentence..."></textarea>
+						<p><small>SCORE: <strong><span id="id_percentageDisplay" class="percentageDisplay">0%</span></strong></small> 
+							<input type="range" id="id_percentageSlider" name="vol" min="0" max="100" value="0" >
+						</p>
+						<!-- <p><small>Current Accuracy: <strong><span class="percentageDisplay">0%</span></strong></small></p> -->
+						</div>
+					<div class="tab-content-item" id="graph">
+						<img src="mild.png" height="300" alt="Audiogram">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="waveform"></div>
+	</main>
+
+	<footer>
+		<div class="contain">
+			<p>This work is licensed under 
+				<a href="http://creativecommons.org/licenses/by-nc-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-SA 4.0</a>
+				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1">
+				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1">
+				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1">
+				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1">
+			</p>
+			<p><a href="#">Credits &rarr;</a></p>
+		</div>
+	</footer>
+
+	<script type="module">
+		let video = document.getElementById("id_video");
+		//import WaveSurfer from 'https://cdn.jsdelivr.net/npm/wavesurfer.js@7/dist/wavesurfer.esm.js';
+		import WaveSurfer from './wavesurfer.esm.js';
+		
+		const wavesurfer = WaveSurfer.create({
+			container:      '.waveform',
+			height:         32,
+			barHeight:      3,
+			dragToSeek:     true,
+			mediaControls:  true,
+			media:          video,          // Set video as source media for waveform display
+			waveColor:      'rgb(200, 0, 200)',
+			progressColor:  'rgb(100, 0, 100)',
+		})
+
+		wavesurfer.on('interaction', () => {
+			wavesurfer.play()
+		});
+
+		document.wavesurfer = wavesurfer;
+	</script>	
+</body>
+
+</html>
