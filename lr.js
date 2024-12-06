@@ -56,12 +56,13 @@ const _sentences = [
     {start: 207.0, end: 210.0, phrase: "Glue the sheet to the dark background."},
     {start: 220.0, end: 224.0, phrase: "The zones merge in the central part of town."},
     {start: 226.0, end: 229.0, phrase: "Let's all join as we sing the chorus."}
-
 ];
 
+const _playlist = [];       // An array holding unplayed sentence indexes to avoid repeats
+
 // Info about current video segment under test
-let _start      = 0.0;                    // Video segment start time
-let _end        = 3.0;                    // Video segment end time
+let _start      = 0.0;      // Video segment start time
+let _end        = 3.0;      // Video segment end time
 let _sentence   = "A rod is used to catch pink salmon";      // Current phrase
 
 const agPresetMap = new Map();
@@ -134,9 +135,17 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    resetPlaylist();
+
     // Default to choice-1
     setChoice("choice-1");
 });
+
+// Repopulate the playlist of indexes
+function resetPlaylist() {
+    _playlist.length = 0;
+    for (var i=0; i<_sentences.length; i++) { _playlist.push(i); }
+}
 
 // Select degradation choice and update interface
 function setChoice(choice) {
@@ -213,12 +222,19 @@ function selectSentence(play=false) {
     document.getElementById('id_percentageSlider').value = 0;
     document.getElementById('id_percentageDisplay').textContent = "0%";
 
-    let idx   = Math.floor(Math.random() * _sentences.length);
-    _start    = _sentences[idx].start;
-    _end      = _sentences[idx].end;
-    _sentence = _sentences[idx].phrase;
+    // let idx   = Math.floor(Math.random() * _sentences.length);
+    let idx   = Math.floor(Math.random() * _playlist.length);   // Pick a random sentence index
+    let snum  = _playlist.splice(idx,1)[0];                     // Remove index from playlist
+    _start    = _sentences[snum].start;                         // Get sentence info
+    _end      = _sentences[snum].end;
+    _sentence = _sentences[snum].phrase;
     const video  = document.getElementById("id_video");
     video.currentTime = _start;
+
+    // If played all sentences, start again
+    if (_playlist.length == 0) { resetPlaylist(); }
+
+    // Play, if requested
     if (play) { video.play(); }
 }
 
@@ -301,13 +317,14 @@ function setdB(dB, filter){
         //console.log(filter.gain.value)
     }
 }
+
 // Init the AudioContext only if it was not initalized before
 function initAudioContext(){
     if(aCtx == null){
         aCtx = new AudioContext();
         initFilters();
-    // } else if (aCtx.state == 'suspended') {
-    //     aCtx.resume();
+    } else if (aCtx.state == 'suspended') {
+        aCtx.resume();
     }
 } 
 // Init filters only when called by initAudioContext()
