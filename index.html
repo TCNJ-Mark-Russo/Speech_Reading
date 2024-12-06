@@ -10,7 +10,7 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="lr.css" rel="stylesheet">
-    <script type="text/javascript" src="lr.js"></script>
+    <script src="lr.js"></script>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 			<h1>Mild Hearing Loss <br><span>&rarr; 30 dB HL - 40 dB HL</span></h1>
 			<p class="info">
 				<strong style="color: var(--secondary-color);">
-					<img src="info-icon.svg" alt="info" width="14" height="14" style="fill: #0d99ff; display: inline;" /> INFO: 
+					<img src="info-icon.svg" alt="info" width="14" height="14" style="fill: #0d99ff; display: inline;" > INFO: 
 				</strong>
 				1. Select degree of hearing loss (above).
 				2. Select video and audio degredation level (below).
@@ -81,7 +81,7 @@
 					</button>
 				</div>
 				<video id="id_video" width="600" height="303" crossorigin="anonymous">
-					<source src="merged551x311.mp4#" type="video/mp4">
+					<source src="merged551x311.mp4" type="video/mp4">
 					Your browser does not support the video tag.
 				</video>
 				<div class="waveform"></div>
@@ -135,11 +135,16 @@
 			height:         32,
 			barHeight:      3,
 			interact:       false,
-			dragToSeek:     false,
-			mediaControls:  false,
+			//dragToSeek:     false,
+			//mediaControls:  false,
 			media:          video,          // Set video as source media for waveform display
+			//width: '40000px',
+			//hideScrollbar: false,
+			//scrollParent: true,
+			//autoScroll: true,
+			//autoCenter: true,
 			waveColor:      '#0d99ff',
-			progressColor:  '#003d70',
+			progressColor:  '#003d70'
 		})
 
 		//wavesurfer.on('interaction', () => {
