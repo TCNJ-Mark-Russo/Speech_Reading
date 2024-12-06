@@ -66,6 +66,12 @@ video {
 	min-height: 310px; */
 }
 
+.vidclip {
+	margin-top: 12px;
+	border-radius: 10px;
+	overflow: clip;
+}
+
 .tab-content-item svg {
 	width: 100%;
 	margin: 0 auto;
@@ -189,6 +195,27 @@ footer .contain {
 	max-width: 1024px;
 }
 
+footer .contain button {
+	background: none;
+	border: none;
+	text-transform: uppercase;
+	font-size: 0.6rem;
+	color:var(--core-color);
+	cursor: pointer;
+}
+.credits {
+	padding: 0 20px 30px;
+	border-radius: 8px;
+	border: 1px solid var(--secondary-color);
+	box-shadow: 0 0 10px var(--primary-color);
+}
+.credits ul, .credits li {
+	margin: 0;
+}
+
+.credits::backdrop {
+  background-color: #83cbff90;
+}
 /* CHOICE BOXES */
 .choices {
 	display: flex;
@@ -389,7 +416,7 @@ h3 {
 	resize: vertical;
 	overflow: scroll;
 	padding: 8px;
-	height: 205px;
+	height: 220px;
 }
 
 .tab-block textarea.results {
@@ -419,7 +446,7 @@ select {
 	max-width: 550px;
 	/* width: 100%; */
 	overflow: hidden;
-	border-radius: 8px;
+/* 	border-radius: 8px; */
 	cursor: col-resize;
 }
 

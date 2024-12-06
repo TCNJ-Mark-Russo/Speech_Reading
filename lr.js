@@ -223,12 +223,12 @@ function selectSentence(play=false) {
     document.getElementById('id_percentageDisplay').textContent = "0%";
 
     // let idx   = Math.floor(Math.random() * _sentences.length);
-    let idx   = Math.floor(Math.random() * _playlist.length);   // Pick a random sentence index
-    let snum  = _playlist.splice(idx,1)[0];                     // Remove index from playlist
-    _start    = _sentences[snum].start;                         // Get sentence info
-    _end      = _sentences[snum].end;
-    _sentence = _sentences[snum].phrase;
-    const video  = document.getElementById("id_video");
+    let idx         = Math.floor(Math.random() * _playlist.length);   // Pick a random sentence index
+    let snum        = _playlist.splice(idx,1)[0];                     // Remove index from playlist
+    _start          = _sentences[snum].start;                         // Get sentence info
+    _end            = _sentences[snum].end;
+    _sentence       = _sentences[snum].phrase;
+    const video     = document.getElementById("id_video");
     video.currentTime = _start;
 
     // If played all sentences, start again
@@ -247,15 +247,15 @@ function replaySentence() {
 
 // TEXT ACCURACY
 function updatePercentages(e) {
-    const display = document.querySelector('#id_percentageDisplay');
-    const slider  = document.querySelector('#id_percentageSlider');
-    let orig  = _sentence; //document.getElementById("transcript").innerText;    // Get string to match, strip all spaces
-    let guess = document.getElementById("id_inputArea").value;         // Get guess, strip all spaces
-    orig      = orig.replace(/[ .,\n\r\t]/g, "").toUpperCase();
-    guess     = guess.replace(/[ .,\n\r\t]/g, "").toUpperCase();
-    const scr = score(orig, guess);                                 // Calculate score
+    const display   = document.querySelector('#id_percentageDisplay');
+    const slider    = document.querySelector('#id_percentageSlider');
+    let orig        = _sentence;                                        // Get string to match, strip all spaces
+    let guess       = document.getElementById("id_inputArea").value;    // Get guess, strip all spaces
+    orig            = orig.replace(/[ .,\n\r\t]/g, "").toUpperCase();
+    guess           = guess.replace(/[ .,\n\r\t]/g, "").toUpperCase();
+    const scr       = score(orig, guess);                               // Calculate score
     display.textContent = scr.toFixed(1) + "%";
-    slider.value = scr;
+    slider.value    = scr;
 }
 
 // Calculate similarity score between two strings: orig and guess
@@ -311,10 +311,7 @@ function setdB(dB, filter){
     dB = Math.min(Math.max(dB, -10), 120);
     //update gain value + apply factor
     if(filter){
-        //console.log(filter.gain.value);
-        // filter.gain.value = 3*dB;
         filter.gain.value = -0.2*dB;
-        //console.log(filter.gain.value)
     }
 }
 

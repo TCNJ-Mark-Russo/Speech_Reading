@@ -80,10 +80,12 @@
 						<span class="button-title">Re/play sentence</span>
 					</button>
 				</div>
-				<video id="id_video" width="600" height="303" crossorigin="anonymous">
-					<source src="merged551x311.mp4" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
+				<div class="vidclip">
+					<video id="id_video" width="600" height="303" crossorigin="anonymous">
+						<source src="merged551x311.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</div>
 				<div class="waveform"></div>
 			</div>
 			<div class="tab-block">
@@ -121,7 +123,14 @@
 				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="">
 				<img style="height:15px!important;display:inline;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
 			</p>
-			<p><a href="#">Credits &rarr;</a></p>
+            <button popovertarget="creditpop">Credits ⤡</button>
+            <div popover id="creditpop" class="credits">
+                <h2>Credits</h2>
+                <ul>
+                    <li>Firstname Lastname: Role</li>
+                    <li>Firstname Lastname: Role</li>
+                </ul>
+            </div>
 		</div>
 	</footer>
 
