@@ -10,52 +10,53 @@ const _HL = {               // Hearing loss level constants
 let _hloss      = _HL.MILD; // Current level of hearing loss
 let filters     = null;     // To be assigned to filter Map
 let aCtx        = null;     // To be assigned to AudioContext
+let _wf         = null;     // Waveform object
 
 // Sentences mapped to video segments
 const _sentences = [
-    {start:   0.0, end:   3.0, phrase: "A rod is used to catch pink salmon"},
-    {start:   4.0, end:   7.0, phrase: "The boy was there when the sun rose"},
-    {start:   8.0, end:  12.0, phrase: "March the soldiers past the next hill"},
-    {start:  13.0, end:  16.0, phrase: "Wipe the grease off his dirty face."},
-    {start:  18.0, end:  21.0, phrase: "Time brings us many changes."},
+    {start:   0.2, end:   2.5, phrase: "A rod is used to catch pink salmon"},
+    {start:   5.0, end:   7.0, phrase: "The boy was there when the sun rose"},
+    {start:   8.5, end:  12.0, phrase: "March the soldiers past the next hill"},
+    {start:  13.5, end:  16.0, phrase: "Wipe the grease off his dirty face."},
+    {start:  18.5, end:  21.0, phrase: "Time brings us many changes."},
     {start:  23.0, end:  26.0, phrase: "The frosty air passed through the coat."},
-    {start:  28.0, end:  31.0, phrase: "Next Sunday is the twelfth of the month."},
+    {start:  29.0, end:  31.5, phrase: "Next Sunday is the twelfth of the month."},
     {start:  34.0, end:  37.0, phrase: "Glue the sheet to the dark background."},
-    {start:  40.0, end:  43.0, phrase: "The zones merge in the central part of town."},
+    {start:  40.5, end:  43.0, phrase: "The zones merge in the central part of town."},
     {start:  46.0, end:  49.0, phrase: "Let's all join as we sing the chorus."},
 
     {start:  52.0, end:  55.0, phrase: "A rod is used to catch pink salmon"},
     {start:  57.0, end:  60.0, phrase: "The boy was there when the sun rose"},
     {start:  62.0, end:  66.0, phrase: "March the soldiers past the next hill"},
-    {start:  67.0, end:  71.0, phrase: "Wipe the grease off his dirty face."},
-    {start:  74.0, end:  77.0, phrase: "Time brings us many changes."},
+    {start:  67.5, end:  71.0, phrase: "Wipe the grease off his dirty face."},
+    {start:  74.0, end:  77.5, phrase: "Time brings us many changes."},
     {start:  80.0, end:  84.0, phrase: "The frosty air passed through the coat."},
     {start:  86.0, end:  90.0, phrase: "Next Sunday is the twelfth of the month."},
     {start:  92.0, end:  96.0, phrase: "Glue the sheet to the dark background."},
     {start:  98.0, end: 102.0, phrase: "The zones merge in the central part of town."},
-    {start: 103.0, end: 107.0, phrase: "Let's all join as we sing the chorus."},
+    {start: 103.5, end: 106.5, phrase: "Let's all join as we sing the chorus."},
 
-    {start: 111.0, end: 115.0, phrase: "A rod is used to catch pink salmon"},
-    {start: 117.0, end: 120.0, phrase: "The boy was there when the sun rose"},
+    {start: 111.5, end: 115.0, phrase: "A rod is used to catch pink salmon"},
+    {start: 117.5, end: 120.0, phrase: "The boy was there when the sun rose"},
     {start: 122.0, end: 126.0, phrase: "March the soldiers past the next hill"},
-    {start: 127.0, end: 131.0, phrase: "Wipe the grease off his dirty face."},
-    {start: 132.0, end: 136.0, phrase: "Time brings us many changes."},
-    {start: 137.0, end: 141.0, phrase: "The frosty air passed through the coat."},
+    {start: 127.5, end: 131.0, phrase: "Wipe the grease off his dirty face."},
+    {start: 133.0, end: 136.0, phrase: "Time brings us many changes."},
+    {start: 138.0, end: 141.0, phrase: "The frosty air passed through the coat."},
     {start: 145.0, end: 148.0, phrase: "Next Sunday is the twelfth of the month."},
     {start: 151.0, end: 154.0, phrase: "Glue the sheet to the dark background."},
-    {start: 158.0, end: 162.0, phrase: "The zones merge in the central part of town."},
-    {start: 166.0, end: 170.0, phrase: "Let's all join as we sing the chorus."},
+    {start: 159.0, end: 162.0, phrase: "The zones merge in the central part of town."},
+    {start: 166.5, end: 170.0, phrase: "Let's all join as we sing the chorus."},
 
-    {start: 173.0, end: 177.0, phrase: "A rod is used to catch pink salmon"},
+    {start: 174.0, end: 177.5, phrase: "A rod is used to catch pink salmon"},
     {start: 179.0, end: 182.0, phrase: "The boy was there when the sun rose"},
-    {start: 183.0, end: 187.0, phrase: "March the soldiers past the next hill"},
-    {start: 188.0, end: 192.0, phrase: "Wipe the grease off his dirty face."},
-    {start: 193.0, end: 196.0, phrase: "Time brings us many changes."},
-    {start: 197.0, end: 201.0, phrase: "The frosty air passed through the coat."},
-    {start: 201.0, end: 205.0, phrase: "Next Sunday is the twelfth of the month."},
+    {start: 183.5, end: 187.0, phrase: "March the soldiers past the next hill"},
+    {start: 188.5, end: 192.0, phrase: "Wipe the grease off his dirty face."},
+    {start: 193.5, end: 196.0, phrase: "Time brings us many changes."},
+    {start: 197.5, end: 201.0, phrase: "The frosty air passed through the coat."},
+    {start: 201.5, end: 205.0, phrase: "Next Sunday is the twelfth of the month."},
     {start: 207.0, end: 210.0, phrase: "Glue the sheet to the dark background."},
-    {start: 220.0, end: 224.0, phrase: "The zones merge in the central part of town."},
-    {start: 226.0, end: 229.0, phrase: "Let's all join as we sing the chorus."}
+    {start: 221.0, end: 224.0, phrase: "The zones merge in the central part of town."},
+    {start: 226.5, end: 229.0, phrase: "Let's all join as we sing the chorus."}
 ];
 
 const _playlist = [];       // An array holding unplayed sentence indexes to avoid repeats
@@ -135,10 +136,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    resetPlaylist();
+    // Create a Waveform object and set video to update it.
+    _wf = new Waveform('id_waveform', 'merged551x311.mp4', selectSentence);
+    document.getElementById("id_video").ontimeupdate = (e) => {
+        _wf.drawProgressBar(e.target.currentTime);
+    };
 
-    // Default to choice-1
-    setChoice("choice-1");
+    resetPlaylist();        // Set up playlist numbers
+    setChoice("choice-1");  // Default to choice-1
 });
 
 // Repopulate the playlist of indexes
@@ -230,6 +235,8 @@ function selectSentence(play=false) {
     _sentence       = _sentences[snum].phrase;
     const video     = document.getElementById("id_video");
     video.currentTime = _start;
+    _wf.setRange(_start, _end);
+    _wf.draw();
 
     // If played all sentences, start again
     if (_playlist.length == 0) { resetPlaylist(); }
@@ -240,6 +247,7 @@ function selectSentence(play=false) {
 
 // Replay current sentence
 function replaySentence() {
+    _wf.draw();
     const video  = document.getElementById("id_video");
     video.currentTime = _start;
     video.play();

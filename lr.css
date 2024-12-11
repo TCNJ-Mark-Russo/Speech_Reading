@@ -67,7 +67,7 @@ video {
 }
 
 .vidclip {
-	margin-top: 12px;
+	margin-top: 4px;
 	border-radius: 10px;
 	overflow: clip;
 }
@@ -416,7 +416,7 @@ h3 {
 	resize: vertical;
 	overflow: scroll;
 	padding: 8px;
-	height: 220px;
+	height: 249px;
 }
 
 .tab-block textarea.results {
@@ -442,12 +442,14 @@ select {
 }
 
 .waveform {
-	margin: 10px 0;
+	/* margin: 10px 0; */
+	margin-top: 4px;
 	max-width: 550px;
+	height: 75px;
 	/* width: 100%; */
 	overflow: hidden;
-/* 	border-radius: 8px; */
 	cursor: col-resize;
+	border-radius: 8px;
 }
 
 #transcript {
